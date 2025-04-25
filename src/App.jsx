@@ -1,9 +1,12 @@
 import { Button } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 
 function App() {
   return (
     <>
-      <Button>Hello </Button>
+      <Container>
+        <Button>Hello </Button>
+      </Container>
     </>
   );
 }
