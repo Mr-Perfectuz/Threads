@@ -1,8 +1,8 @@
-import { Avatar, Image, Box, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Image, Box, Text, Flex } from "@chakra-ui/react";
 import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const UserPost = ({ postImg, postTitle, likes, replies }) => {
+const UserPost = ({ likes, replies }) => {
   return (
     <Link to={"/markzuckerberg/post/1"}>
       <Flex gap={3} mb={4} py={5}>
@@ -55,17 +55,16 @@ const UserPost = ({ postImg, postTitle, likes, replies }) => {
             </Flex>
           </Flex>
 
-          <Text fontSize={"sm"}>{postTitle}</Text>
-          {postImg && (
-            <Box
-              borderRadius={6}
-              overflow={"hidden"}
-              border={"1px solid"}
-              borderColor={"gray.light"}
-            >
-              <Image src={postImg} w={"full"} />
-            </Box>
-          )}
+          <Text fontSize={"sm"}>This is my first post </Text>
+
+          <Box
+            borderRadius={6}
+            overflow={"hidden"}
+            border={"1px solid"}
+            borderColor={"gray.light"}
+          >
+            <Image src="/post1.png" w={"full"} />
+          </Box>
 
           <Flex gap={3} my={1}></Flex>
 

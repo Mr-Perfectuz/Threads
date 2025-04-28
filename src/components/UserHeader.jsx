@@ -3,8 +3,12 @@ import { BsInstagram } from "react-icons/bs";
 import { CgMoreO } from "react-icons/cg";
 import { Menu, MenuButton, MenuItem, MenuList, Portal } from "@chakra-ui/react";
 import { Button, useToast } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 const UserHeader = () => {
+  const badgeBg = useColorModeValue("gray.200", "gray.700");
+  const badgeColor = useColorModeValue("gray.800", "gray.200");
+
   const toast = useToast();
   const copyURL = () => {
     const currentURL = window.location.href;
@@ -29,8 +33,8 @@ const UserHeader = () => {
             <Text>markzuckerberg</Text>
             <Text
               fontSize={"xs"}
-              bg={"gray.dark"}
-              color={"gray.light"}
+              bg={badgeBg}
+              color={badgeColor}
               p={1}
               borderRadius={"full"}
             >
