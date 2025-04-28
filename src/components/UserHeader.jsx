@@ -1,7 +1,23 @@
 import { Avatar, Box, Flex, Link, Text, VStack } from "@chakra-ui/react";
 import { BsInstagram } from "react-icons/bs";
+import { CgMoreO } from "react-icons/cg";
+import { Menu, MenuButton, MenuItem, MenuList, Portal } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 
 const UserHeader = () => {
+  const toast = useToast();
+  const copyURL = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL).then(() => {
+      toast({
+        title: "Success.",
+        status: "success",
+        description: "Profile link copied.",
+        duration: 3000,
+        isClosable: true,
+      });
+    });
+  };
   return (
     <VStack align="start">
       <Flex justifyContent={"space-between"} w={"full"}>
@@ -36,6 +52,20 @@ const UserHeader = () => {
         <Flex>
           <Box className="icon-container">
             <BsInstagram size={24} cursor={"pointer"} />
+          </Box>
+          <Box className="icon-container">
+            <Menu>
+              <MenuButton>
+                <CgMoreO size={24} cursor={"pointer"} />
+              </MenuButton>
+              <Portal>
+                <MenuList bg={"gray.dark"}>
+                  <MenuItem bg={"gray.dark"} onClick={copyURL}>
+                    Copy link
+                  </MenuItem>
+                </MenuList>
+              </Portal>
+            </Menu>
           </Box>
         </Flex>
       </Flex>
