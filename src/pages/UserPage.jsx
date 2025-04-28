@@ -1,10 +1,11 @@
 import React from "react";
+import UserHeader from "../components/UserHeader";
 
 const UserPage = () => {
   return (
-    <div>
-      <h1>User Page</h1>
-    </div>
+    <>
+      <UserHeader />
+    </>
   );
 };
 
