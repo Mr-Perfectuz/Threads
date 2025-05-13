@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
-import Post from "../models/postModel.js";
+import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
+import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
 
 const getUserProfile = async (req, res) => {
   const { query } = req.params;
@@ -48,16 +49,14 @@ const signupUser = async (req, res) => {
     });
     await newUser.save();
 
-    if (newUser) {
-      generateTokenAndSetCookie(newUser._id, res);
+    generateTokenAndSetCookie(newUser._id, res);
 
+    if (newUser) {
       res.status(201).json({
         _id: newUser._id,
         name: newUser.name,
         email: newUser.email,
         username: newUser.username,
-        bio: newUser.bio,
-        profilePic: newUser.profilePic,
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
