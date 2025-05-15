@@ -4,25 +4,12 @@ import mongoose from "mongoose";
 import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
 
 const getUserProfile = async (req, res) => {
-  const { query } = req.params;
-
+  const { username } = req.params;
   try {
-    let user;
-
-    // query is userId
-    if (mongoose.Types.ObjectId.isValid(query)) {
-      user = await User.findOne({ _id: query })
-        .select("-password")
-        .select("-updatedAt");
-    } else {
-      // query is username
-      user = await User.findOne({ username: query })
-        .select("-password")
-        .select("-updatedAt");
-    }
-
+    const user = await User.findOne({ username })
+      .select("-password")
+      .select("-updatedAt");
     if (!user) return res.status(404).json({ error: "User not found" });
-
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
