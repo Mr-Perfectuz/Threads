@@ -69,7 +69,7 @@ export default function LoginCard() {
           p={8}
           w={{
             base: "full",
-            sm: "400px",
+            sm: "500px",
           }}
         >
           <Stack spacing={4}>

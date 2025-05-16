@@ -70,6 +70,10 @@ export default function SignupCard() {
           bg={useColorModeValue("white", "gray.dark")}
           boxShadow={"lg"}
           p={8}
+          w={{
+            base: "full",
+            sm: "500px",
+          }}
         >
           <Stack spacing={4}>
             <HStack>
