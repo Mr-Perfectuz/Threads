@@ -18,6 +18,7 @@ const UserHeader = ({ user }) => {
   const copyURL = () => {
     const currentURL = window.location.href;
     navigator.clipboard.writeText(currentURL).then(() => {
+      following;
       toast({
         title: "Success.",
         status: "success",

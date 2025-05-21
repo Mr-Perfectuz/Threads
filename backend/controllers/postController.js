@@ -29,10 +29,10 @@ const createPost = async (req, res) => {
         .json({ error: `Text must be less than ${maxLength} characters` });
     }
 
-    // if (img) {
-    //   const uploadedResponse = await cloudinary.uploader.upload(img);
-    //   img = uploadedResponse.secure_url;
-    // }
+    if (img) {
+      const uploadedResponse = await cloudinary.uploader.upload(img);
+      img = uploadedResponse.secure_url;
+    }
 
     const newPost = new Post({ postedBy, text, img });
     await newPost.save();
