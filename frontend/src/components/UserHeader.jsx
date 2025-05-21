@@ -1,15 +1,20 @@
-import { Avatar, Box, Flex, Link, Text, VStack } from "@chakra-ui/react";
+import { Avatar } from "@chakra-ui/avatar";
+import { Box, Flex, Link, Text, VStack } from "@chakra-ui/layout";
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { Portal } from "@chakra-ui/portal";
+import { Button, useToast } from "@chakra-ui/react";
 import { BsInstagram } from "react-icons/bs";
 import { CgMoreO } from "react-icons/cg";
-import { Menu, MenuButton, MenuItem, MenuList, Portal } from "@chakra-ui/react";
-import { Button, useToast } from "@chakra-ui/react";
-import { useColorModeValue } from "@chakra-ui/react";
+import { useRecoilValue } from "recoil";
+import userAtom from "../atoms/userAtom";
+import { Link as RouterLink } from "react-router-dom";
+import useFollowUnfollow from "../hooks/useFollowUnfollow";
 
-const UserHeader = () => {
-  const badgeBg = useColorModeValue("gray.200", "gray.700");
-  const badgeColor = useColorModeValue("gray.800", "gray.200");
-
+const UserHeader = ({ user }) => {
   const toast = useToast();
+  const currentUser = useRecoilValue(userAtom); // logged in user
+  const { handleFollowUnfollow, following, updating } = useFollowUnfollow(user);
+
   const copyURL = () => {
     const currentURL = window.location.href;
     navigator.clipboard.writeText(currentURL).then(() => {
@@ -22,19 +27,20 @@ const UserHeader = () => {
       });
     });
   };
+
   return (
-    <VStack align="start">
+    <VStack gap={4} alignItems={"start"}>
       <Flex justifyContent={"space-between"} w={"full"}>
         <Box>
           <Text fontSize={"2xl"} fontWeight={"bold"}>
-            Mark Zuckerberg
+            {user.name}
           </Text>
           <Flex gap={2} alignItems={"center"}>
-            <Text>markzuckerberg</Text>
+            <Text fontSize={"sm"}>{user.username}</Text>
             <Text
               fontSize={"xs"}
-              bg={badgeBg}
-              color={badgeColor}
+              bg={"gray.dark"}
+              color={"gray.light"}
               p={1}
               borderRadius={"full"}
             >
@@ -43,13 +49,44 @@ const UserHeader = () => {
           </Flex>
         </Box>
         <Box>
-          <Avatar name="Mark Zuckerberg" src="/zuck-avatar.png" size={"xl"} />
+          {user.profilePic && (
+            <Avatar
+              name={user.name}
+              src={user.profilePic}
+              size={{
+                base: "md",
+                md: "xl",
+              }}
+            />
+          )}
+          {!user.profilePic && (
+            <Avatar
+              name={user.name}
+              src="https://bit.ly/broken-link"
+              size={{
+                base: "md",
+                md: "xl",
+              }}
+            />
+          )}
         </Box>
       </Flex>
-      <Text>Co-founder, executive chairman and CEO of Meta Platforms. </Text>
+
+      <Text>{user.bio}</Text>
+
+      {currentUser?._id === user._id && (
+        <Link as={RouterLink} to="/update">
+          <Button size={"sm"}>Update Profile</Button>
+        </Link>
+      )}
+      {currentUser?._id !== user._id && (
+        <Button size={"sm"} onClick={handleFollowUnfollow} isLoading={updating}>
+          {following ? "Unfollow" : "Follow"}
+        </Button>
+      )}
       <Flex w={"full"} justifyContent={"space-between"}>
         <Flex gap={2} alignItems={"center"}>
-          <Text color={"gray.light"}>3.2k followers</Text>
+          <Text color={"gray.light"}>{user.followers.length} followers</Text>
           <Box w="1" h="1" bg={"gray.light"} borderRadius={"full"}></Box>
           <Link color={"gray.light"}>instagram.com</Link>
         </Flex>
@@ -73,6 +110,7 @@ const UserHeader = () => {
           </Box>
         </Flex>
       </Flex>
+
       <Flex w={"full"}>
         <Flex
           flex={1}
