@@ -1,11 +1,15 @@
 import User from "../models/userModel.js";
+import Post from "../models/postModel.js";
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
 import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
 import { v2 as cloudinary } from "cloudinary";
+import mongoose from "mongoose";
 
 const getUserProfile = async (req, res) => {
+  // We will fetch user profile either with username or userId
+  // query is either username or userId
   const { query } = req.params;
+
   try {
     let user;
 
@@ -49,14 +53,16 @@ const signupUser = async (req, res) => {
     });
     await newUser.save();
 
-    generateTokenAndSetCookie(newUser._id, res);
-
     if (newUser) {
+      generateTokenAndSetCookie(newUser._id, res);
+
       res.status(201).json({
         _id: newUser._id,
         name: newUser.name,
         email: newUser.email,
         username: newUser.username,
+        bio: newUser.bio,
+        profilePic: newUser.profilePic,
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
@@ -181,6 +187,22 @@ const updateUser = async (req, res) => {
     user.bio = bio || user.bio;
 
     user = await user.save();
+
+    // Find all posts that this user replied and update username and userProfilePic fields
+    await Post.updateMany(
+      { "replies.userId": userId },
+      {
+        $set: {
+          "replies.$[reply].username": user.username,
+          "replies.$[reply].userProfilePic": user.profilePic,
+        },
+      },
+      { arrayFilters: [{ "reply.userId": userId }] }
+    );
+
+    // password should be null in response
+    user.password = null;
+
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -188,11 +210,42 @@ const updateUser = async (req, res) => {
   }
 };
 
+const getSuggestedUsers = async (req, res) => {
+  try {
+    // exclude the current user from suggested users array and exclude users that current user is already following
+    const userId = req.user._id;
+
+    const usersFollowedByYou = await User.findById(userId).select("following");
+
+    const users = await User.aggregate([
+      {
+        $match: {
+          _id: { $ne: userId },
+        },
+      },
+      {
+        $sample: { size: 10 },
+      },
+    ]);
+    const filteredUsers = users.filter(
+      (user) => !usersFollowedByYou.following.includes(user._id)
+    );
+    const suggestedUsers = filteredUsers.slice(0, 4);
+
+    suggestedUsers.forEach((user) => (user.password = null));
+
+    res.status(200).json(suggestedUsers);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export {
   signupUser,
   loginUser,
   logoutUser,
-  getUserProfile,
   followUnFollowUser,
   updateUser,
+  getUserProfile,
+  getSuggestedUsers,
 };
