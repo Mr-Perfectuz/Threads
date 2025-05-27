@@ -96,11 +96,9 @@ const likeUnlikePost = async (req, res) => {
     const userLikedPost = post.likes.includes(userId);
 
     if (userLikedPost) {
-      // Unlike post
       await Post.updateOne({ _id: postId }, { $pull: { likes: userId } });
       res.status(200).json({ message: "Post unliked successfully" });
     } else {
-      // Like post
       post.likes.push(userId);
       await post.save();
       res.status(200).json({ message: "Post liked successfully" });

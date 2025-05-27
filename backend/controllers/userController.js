@@ -6,20 +6,16 @@ import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
 
 const getUserProfile = async (req, res) => {
-  // We will fetch user profile either with username or userId
-  // query is either username or userId
   const { query } = req.params;
 
   try {
     let user;
 
-    // query is userId
     if (mongoose.Types.ObjectId.isValid(query)) {
       user = await User.findOne({ _id: query })
         .select("-password")
         .select("-updatedAt");
     } else {
-      // query is username
       user = await User.findOne({ username: query })
         .select("-password")
         .select("-updatedAt");
@@ -133,12 +129,10 @@ const followUnFollowUser = async (req, res) => {
     const isFollowing = currentUser.following.includes(id);
 
     if (isFollowing) {
-      // Unfollow user
       await User.findByIdAndUpdate(id, { $pull: { followers: req.user._id } });
       await User.findByIdAndUpdate(req.user._id, { $pull: { following: id } });
       res.status(200).json({ message: "User unfollowed successfully" });
     } else {
-      // Follow user
       await User.findByIdAndUpdate(id, { $push: { followers: req.user._id } });
       await User.findByIdAndUpdate(req.user._id, { $push: { following: id } });
       res.status(200).json({ message: "User followed successfully" });
@@ -188,7 +182,6 @@ const updateUser = async (req, res) => {
 
     user = await user.save();
 
-    // Find all posts that this user replied and update username and userProfilePic fields
     await Post.updateMany(
       { "replies.userId": userId },
       {
@@ -200,7 +193,6 @@ const updateUser = async (req, res) => {
       { arrayFilters: [{ "reply.userId": userId }] }
     );
 
-    // password should be null in response
     user.password = null;
 
     res.status(200).json(user);
@@ -212,7 +204,6 @@ const updateUser = async (req, res) => {
 
 const getSuggestedUsers = async (req, res) => {
   try {
-    // exclude the current user from suggested users array and exclude users that current user is already following
     const userId = req.user._id;
 
     const usersFollowedByYou = await User.findById(userId).select("following");

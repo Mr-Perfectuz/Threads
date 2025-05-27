@@ -35,8 +35,7 @@ const MessageContainer = () => {
       if (selectedConversation._id === message.conversationId) {
         setMessages((prev) => [...prev, message]);
       }
-      // make a sound if the window is not focused
-      if (!document.hasFocus()) {
+       if (!document.hasFocus()) {
         const sound = new Audio(messageSound);
         sound.play();
       }

@@ -9,7 +9,7 @@ import { useRecoilValue } from "recoil";
 import userAtom from "./atoms/userAtom";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
 import CreatePost from "./components/CreatePost";
-import ChatPage from "./pages/ChatPage.jsx";
+import ChatPage from "./pages/ChatPage";
 function App() {
   const user = useRecoilValue(userAtom);
   const { pathname } = useLocation();
