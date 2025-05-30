@@ -35,7 +35,7 @@ const MessageContainer = () => {
       if (selectedConversation._id === message.conversationId) {
         setMessages((prev) => [...prev, message]);
       }
-       if (!document.hasFocus()) {
+      if (!document.hasFocus()) {
         const sound = new Audio(messageSound);
         sound.play();
       }
@@ -124,7 +124,6 @@ const MessageContainer = () => {
       p={2}
       flexDirection={"column"}
     >
-      {/* Message header */}
       <Flex w={"full"} h={12} alignItems={"center"} gap={2}>
         <Avatar src={selectedConversation.userProfilePic} size={"sm"} />
         <Text display={"flex"} alignItems={"center"}>
