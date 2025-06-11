@@ -48,16 +48,13 @@ const SuggestedUsers = () => {
               p={"1"}
               borderRadius={"md"}
             >
-              {/* avatar skeleton */}
               <Box>
                 <SkeletonCircle size={"10"} />
               </Box>
-              {/* username and fullname skeleton */}
               <Flex w={"full"} flexDirection={"column"} gap={2}>
                 <Skeleton h={"8px"} w={"80px"} />
                 <Skeleton h={"8px"} w={"90px"} />
               </Flex>
-              {/* follow button skeleton */}
               <Flex>
                 <Skeleton h={"20px"} w={"60px"} />
               </Flex>

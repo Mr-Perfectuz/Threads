@@ -56,7 +56,7 @@ const HomePage = () => {
           md: "block",
         }}
       >
-        {/* <SuggestedUsers /> */}
+        <SuggestedUsers />
       </Box>
     </Flex>
   );
