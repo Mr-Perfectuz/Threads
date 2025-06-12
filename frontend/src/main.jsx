@@ -34,14 +34,16 @@ const colors = {
 const theme = extendTheme({ config, styles, colors });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RecoilRoot>
-    <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <SocketContextProvider>
-          <App />
-        </SocketContextProvider>
-      </ChakraProvider>
-    </BrowserRouter>
-  </RecoilRoot>
+  <React.StrictMode>
+    <RecoilRoot>
+      <BrowserRouter>
+        <ChakraProvider theme={theme}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <SocketContextProvider>
+            <App />
+          </SocketContextProvider>
+        </ChakraProvider>
+      </BrowserRouter>
+    </RecoilRoot>
+  </React.StrictMode>
 );
