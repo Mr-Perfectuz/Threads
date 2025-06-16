@@ -1,7 +1,6 @@
 import { Button, Text } from "@chakra-ui/react";
 import useShowToast from "../hooks/useShowToast";
 import useLogout from "../hooks/useLogout";
-import { apiFetch } from "../api/fetchWrapper";
 
 export const SettingsPage = () => {
   const showToast = useShowToast();
@@ -12,7 +11,7 @@ export const SettingsPage = () => {
       return;
 
     try {
-      const res = await apiFetch("/api/users/freeze", {
+      const res = await fetch("/api/users/freeze", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
       });
