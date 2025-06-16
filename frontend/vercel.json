@@ -4,14 +4,5 @@
       "source": "/api/:path*",
       "destination": "https://threads-backend-voxz.onrender.com/:path*"
     }
-  ],
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "frontend/dist"
-      }
-    }
   ]
 }
