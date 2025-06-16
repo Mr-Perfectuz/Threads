@@ -1,6 +1,6 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Box, Flex, Link, Text, VStack } from "@chakra-ui/layout";
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { Portal } from "@chakra-ui/portal";
 import { Button, useToast } from "@chakra-ui/react";
 import { BsInstagram } from "react-icons/bs";
@@ -12,12 +12,13 @@ import useFollowUnfollow from "../hooks/useFollowUnfollow";
 
 const UserHeader = ({ user }) => {
   const toast = useToast();
-  const currentUser = useRecoilValue(userAtom); // logged in user
+  const currentUser = useRecoilValue(userAtom);
   const { handleFollowUnfollow, following, updating } = useFollowUnfollow(user);
 
   const copyURL = () => {
     const currentURL = window.location.href;
     navigator.clipboard.writeText(currentURL).then(() => {
+      following;
       toast({
         title: "Success.",
         status: "success",
