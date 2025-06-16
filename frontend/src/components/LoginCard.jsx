@@ -19,7 +19,6 @@ import { useSetRecoilState } from "recoil";
 import authScreenAtom from "../atoms/authAtom";
 import useShowToast from "../hooks/useShowToast";
 import userAtom from "../atoms/userAtom";
-import { apiFetch } from "../api/fetchWrapper";
 
 export default function LoginCard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +34,7 @@ export default function LoginCard() {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const res = await apiFetch("/api/users/login", {
+      const res = await fetch("/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

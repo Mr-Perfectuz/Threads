@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const isDev = process.env.NODE_ENV === "development";
-const backendTarget = isDev
-  ? "http://localhost:3001"
-  : "https://threads-backend-voxz.onrender.com";
+// const isDev = process.env.NODE_ENV === "development";
+// const backendTarget = isDev
+//   ? "http://localhost:3001"
+//   : "https://threads-backend-voxz.onrender.com";
 
 export default defineConfig({
   plugins: [react()],
@@ -12,7 +12,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: backendTarget,
+        target: "https://threads-backend-voxz.onrender.com",
         changeOrigin: true,
         secure: false,
       },
