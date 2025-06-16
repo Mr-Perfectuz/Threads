@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 const isDev = process.env.NODE_ENV === "development";
 const backendTarget = isDev
   ? "http://localhost:3001"
-  : "https://threadsbackend.vercel.app";
+  : "https://threads-backend-voxz.onrender.com";
 
 export default defineConfig({
   plugins: [react()],
