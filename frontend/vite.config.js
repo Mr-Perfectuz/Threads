@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://threads-rho-eight.vercel.app/",
+        target: "http://localhost:3001",
         changeOrigin: true,
         secure: false,
       },
