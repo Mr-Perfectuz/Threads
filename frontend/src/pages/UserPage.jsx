@@ -7,6 +7,7 @@ import Post from "../components/Post";
 import useGetUserProfile from "../hooks/useGetUserProfile";
 import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
+import { apiFetch } from "../api/fetchWrapper";
 
 const UserPage = () => {
   const { user, loading } = useGetUserProfile();
@@ -20,7 +21,7 @@ const UserPage = () => {
       if (!user) return;
       setFetchingPosts(true);
       try {
-        const res = await fetch(`/api/posts/user/${username}`);
+        const res = await apiFetch(`/api/posts/user/${username}`);
         const data = await res.json();
         console.log(data);
         setPosts(data);
