@@ -13,7 +13,7 @@ import cors from "cors";
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://threads-front.vercel.app",
+  "https://threads-main-app.vercel.app",
 ];
 
 app.use(
