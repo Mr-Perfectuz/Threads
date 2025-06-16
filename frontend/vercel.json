@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://threadsbackend.vercel.app/api/:path*"
+      "destination": "https://threads-backend-voxz.onrender.com/:path*"
     }
   ]
 }
