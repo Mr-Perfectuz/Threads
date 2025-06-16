@@ -4,5 +4,14 @@
       "source": "/api/:path*",
       "destination": "https://threads-backend-voxz.onrender.com/api/:path*"
     }
+  ],
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "https://threads-backend-voxz.onrender.com/api/$1"
+    }
   ]
 }
