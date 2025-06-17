@@ -40,7 +40,7 @@ const UserHeader = ({ user }) => {
             <Text fontSize={"sm"}>{user.username}</Text>
             <Text
               fontSize={"xs"}
-              bg={"gray.dark"}
+              bg={"gray.white"}
               color={"gray.light"}
               p={1}
               borderRadius={"full"}
