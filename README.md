@@ -166,12 +166,12 @@ MIT License. Free to fork and build upon.
 <p align="center">
   <img src="/frontend/public/login.png"   />
   <img src="/frontend/public/main.png"  />
-  <img src="/frontend/public/user_light_mode.png"   />
   <img src="/frontend/public/chat.png"   />
   <img src="/frontend/public/comment.png"   />
-  <img src="/frontend/public/createPost.png"   />
   <img src="/frontend/public/like_post.png"   />
   <img src="/frontend/public/realtime_chatting.png"   />
   <img src="/frontend/public/settings.png"   />
   <img src="/frontend/public/update.png"   />
+  <img src="/frontend/public/user_light_mode.png"   />
+  <img src="/frontend/public/createPost.png"   />
 </p>
