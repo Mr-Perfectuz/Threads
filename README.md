@@ -164,14 +164,14 @@ Special thanks to open-source packages that made this project possible.
 MIT License. Free to fork and build upon.
 
 <p align="center">
-  <img src="public/login.png"   />
-  <img src="public/main.png"  />
-  <img src="public/user_light_mode.png"   />
-  <img src="public/chat.png"   />
-  <img src="public/comment.png"   />
-  <img src="public/createPost.png"   />
-  <img src="public/like_post.png"   />
-  <img src="public/realtime_chatting.png"   />
-  <img src="public/settings.png"   />
-  <img src="public/update.png"   />
+  <img src="/frontend/public/login.png"   />
+  <img src="/frontend/public/main.png"  />
+  <img src="/frontend/public/user_light_mode.png"   />
+  <img src="/frontend/public/chat.png"   />
+  <img src="/frontend/public/comment.png"   />
+  <img src="/frontend/public/createPost.png"   />
+  <img src="/frontend/public/like_post.png"   />
+  <img src="/frontend/public/realtime_chatting.png"   />
+  <img src="/frontend/public/settings.png"   />
+  <img src="/frontend/public/update.png"   />
 </p>
