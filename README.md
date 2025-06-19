@@ -1,7 +1,7 @@
 # 🧵 Threads
 
 <p align="center">
-  <img src="public/threads-preview.png" alt="Threads App Preview" />
+  <img src="/frontend/public/main.png" alt="Threads App Preview" />
 </p>
 
 **Threads** is a real-time messaging platform built with **React**, **Vite**, **Node.js**, and **Socket.IO**. It offers a modern UI with responsive design, real-time updates, user authentication, and a smooth chat experience — ideal for developers looking to learn or build scalable full-stack messaging applications.
@@ -70,22 +70,31 @@ npm run preview # Preview production build
 ```
 /threads
 ├── backend/
-│   ├── server.js         # Main Express server
-│   ├── models/           # Mongoose models (User, Message, etc.)
-│   ├── routes/           # Auth & message APIs
-│   ├── socket/           # Socket.IO logic
-│   ├── .env              # Env config (MONGO_URI, JWT_SECRET)
-│   └── ...
+│   ├── server.js            # Main Express server
+│   ├── .env                 # Env config (MONGO_URI, JWT_SECRET)
+│   ├── controllers/         # Request handlers
+│   ├── db/                  # Database connection setup
+│   ├── middlewares/        # Custom middleware functions
+│   ├── models/             # Mongoose schemas
+│   ├── routes/             # API routes
+│   ├── socket/             # Socket.IO server logic
+│   └── utils/              # Utility functions
 ├── frontend/
+│   ├── public/             # Static files and images
 │   ├── src/
-│   │   ├── components/   # Chakra UI components
-│   │   ├── recoil/       # Recoil atoms/selectors
-│   │   ├── pages/        # Route pages
-│   │   ├── utils/        # API helpers, formatters
-│   │   └── main.jsx      # App entry point
-│   ├── public/           # Static assets
-│   ├── .env              # VITE_API_URL, VITE_SOCKET_URL
-│   └── ...
+│   │   ├── assets/         # Images, icons, etc.
+│   │   ├── atoms/          # Recoil atoms/selectors
+│   │   ├── components/     # Shared UI components
+│   │   ├── context/        # React context providers
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── pages/          # Route-level pages
+│   │   ├── App.jsx         # Main App component
+│   │   ├── index.css       # Global styles
+│   │   └── main.jsx        # App entry point
+│   ├── .env                # VITE_API_URL, VITE_SOCKET_URL
+│   ├── index.html          # HTML template
+│   ├── vite.config.js      # Vite configuration
+│   └── eslint.config.js    # ESLint configuration
 ```
 
 ---
@@ -155,7 +164,14 @@ Special thanks to open-source packages that made this project possible.
 MIT License. Free to fork and build upon.
 
 <p align="center">
-  <img src="public/conversation.png" width="200" />
-  <img src="public/chat-ui.png" width="200" />
-  <img src="public/login.png" width="200" />
+  <img src="public/login.png"   />
+  <img src="public/main.png"  />
+  <img src="public/user_light_mode.png"   />
+  <img src="public/chat.png"   />
+  <img src="public/comment.png"   />
+  <img src="public/createPost.png"   />
+  <img src="public/like_post.png"   />
+  <img src="public/realtime_chatting.png"   />
+  <img src="public/settings.png"   />
+  <img src="public/update.png"   />
 </p>
